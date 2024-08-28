@@ -1,9 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Role } from "./Role";
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number = 0;
+  id!: number;
 
   @Column()
   firstName!: string;
@@ -16,4 +17,7 @@ export class User {
   
   @Column()
   passwordHash!: string; // Store hashed password
+
+  @ManyToOne(() => Role, role => role.users)
+  role!: Role;
 }
