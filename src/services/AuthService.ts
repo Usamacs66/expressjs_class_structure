@@ -24,11 +24,7 @@ export class AuthService {
   }
 
   async authenticate(token: string): Promise<User | null> {
-    try {
-      const decoded = jwt.verify(token, JWT_SECRET) as { id: number };
-      return this.userRepository.findOneBy({ id: decoded.id });
-    } catch {
-      return null;
-    }
+    const decoded = jwt.verify(token, JWT_SECRET) as { id: number };
+    return await this.userRepository.findOneBy({ id: decoded.id });     
   }
 }

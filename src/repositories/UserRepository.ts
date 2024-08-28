@@ -7,7 +7,6 @@ export class UserRepository extends Repository<User> {
   }
    
   async saveUser(user: User): Promise<User> {
-    return this.save(user);
+    return await this.save(user);
   }
-  // Add custom repository methods here if needed
 }
